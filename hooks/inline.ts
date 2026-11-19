@@ -1,5 +1,5 @@
 // Splits a reply's markdown so paragraphs and lists holding inline code can be
-// drawn by the mod (code in purple), and everything else by the app's Markdown.
+// drawn by the mod (code in orange), and everything else by the app's Markdown.
 
 export type Span =
   | { kind: 'text'; text: string }

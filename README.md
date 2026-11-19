@@ -5,7 +5,7 @@ A dark Material-blue look for Claude Code in the desktop and mobile apps:
 - deep navy chat background (`#0f111a`) with a matching navy sidebar
 - your messages in solid blue bubbles on the right, up to two thirds of the row
 - each block of Claude's reply in its own dark glass bubble on the left
-- purple keywords in code blocks (Material code theme where the app offers it) and purple inline code
+- Claude-orange keywords in code blocks and Claude-orange inline code
 
 The terminal and VS Code keep their own look; the theme only applies where the app draws themes.
 

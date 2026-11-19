@@ -6,7 +6,7 @@ const REPLY = {
   component: 'AssistantMessage',
 } as const
 
-test('inline code in a reply is drawn purple; the rest keeps its formatting', async $ => {
+test('inline code in a reply is drawn orange; the rest keeps its formatting', async $ => {
   const ui = await $.ui.mount({
     ...REPLY,
     props: {
@@ -16,9 +16,9 @@ test('inline code in a reply is drawn purple; the rest keeps its formatting', as
   })
 
   await ui.drawn()
-  const purple = (await ui.findAll({ type: 'Text' })).filter(t => t.props.color === '#c792ea')
-  expect(purple.map(t => t.text)).toEqual(['claude plugin validate', 'width'])
-  expect(purple[0]?.props).toMatchObject({ mono: true })
+  const orange = (await ui.findAll({ type: 'Text' })).filter(t => t.props.color === '#d97757')
+  expect(orange.map(t => t.text)).toEqual(['claude plugin validate', 'width'])
+  expect(orange[0]?.props).toMatchObject({ mono: true })
   expect(await ui.find({ type: 'Markdown' })).toBeDefined()
   await ui.unmount()
 })

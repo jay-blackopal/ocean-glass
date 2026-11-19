@@ -7,11 +7,9 @@ import { makeColors } from './make-colors.js'
 const { theme, problems } = makeColors({
   label: 'Ocean Glass',
   only: 'dark',
-  // Code blocks use this highlighting theme where the app offers it; otherwise the roles colour them.
-  codeTheme: { dark: 'material-theme' },
   roles: {
-    // Keywords are coloured from accent, so purple here, as in a Material editor.
-    accent: '#c792ea',
+    // Keywords are coloured from accent: Claude orange.
+    accent: '#d97757',
     danger: '#f07178',
     success: '#c3e88d',
     warning: '#ffcb6b',
@@ -52,8 +50,8 @@ const GLASS_EDGE = '#ffffff24'
 // takes the other third and the bubble keeps at most two thirds of the row.
 const SPACER_WIDTH = '34%'
 
-// Inline code in replies: purple on a faint chip, as keywords are in code blocks.
-const INLINE_CODE = '#c792ea'
+// Inline code in replies: Claude orange on a faint chip, as keywords are in code blocks.
+const INLINE_CODE = '#d97757'
 const INLINE_CODE_BG = '#ffffff12'
 
 // A still backdrop in the chat's own navy. Desktop draws its panels (the sidebar)
@@ -126,7 +124,7 @@ export const register: Register = on => {
   })
 
   // Each block of a reply (the text between tool calls): its own dark glass bubble, set to the left.
-  // A block with inline code is drawn by the mod so the code can be purple; the rest keeps the app's row.
+  // A block with inline code is drawn by the mod so the code can be orange; the rest keeps the app's row.
   on('ui.render', { component: 'AssistantMessage' }, async ($, e, next) => {
     if (e.surface !== 'desktop' && e.surface !== 'mobile') {
       return next(e)
