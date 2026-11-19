@@ -1,0 +1,5 @@
+{
+  "name": "local-mods",
+  "owner": { "name": "Jay" },
+  "plugins": [{ "name": "ocean-glass", "source": "./" }]
+}
