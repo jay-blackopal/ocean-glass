@@ -35,3 +35,19 @@ test('your prompt is drawn as white text in a solid blue bubble', async $ => {
   expect(text?.props).toMatchObject({ color: '#ffffff' })
   await ui.unmount()
 })
+
+test('/ocean-glass reports that the mod is running and what became of the theme', async ($, on) => {
+  on('session.surfaces', () => ({ value: ['desktop'] }))
+  on('theme.set', () => ({ value: { isDrawn: false, reason: 'no client that draws themes is attached' } }))
+
+  const ran = await $.command.run({
+    command: 'ocean-glass',
+    args: '',
+    origin: { kind: 'composer' },
+    presentation: { isFullscreen: false, columns: 80 },
+  })
+
+  expect(ran.text).toBe(
+    'Ocean Glass is running. Surfaces attached: desktop. Theme: not drawn (no client that draws themes is attached).',
+  )
+})

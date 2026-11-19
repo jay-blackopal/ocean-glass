@@ -68,6 +68,11 @@ const LOOK: ThemeSetArgs = {
 
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
+    await $.command.register({
+      name: 'ocean-glass',
+      description: 'Check that Ocean Glass is running and whether its theme reaches this app',
+    })
+
     const unpainted = problems.find(line => line.startsWith("Desktop won't paint"))
 
     if (unpainted !== undefined) {
@@ -81,6 +86,16 @@ export const register: Register = on => {
     }
 
     return next(e)
+  })
+
+  // A self-check: sets the look again and reports what the engine says of it.
+  on('command.run', { command: 'ocean-glass' }, async $ => {
+    const surfaces = await $.session.surfaces()
+    const set = await $.theme.set(LOOK)
+    const attached = surfaces.length > 0 ? surfaces.join(', ') : 'none'
+    const theme = set.isDrawn ? 'drawn' : `not drawn (${set.reason})`
+
+    return { text: `Ocean Glass is running. Surfaces attached: ${attached}. Theme: ${theme}.` }
   })
 
   on('ui.render', { component: 'Backdrop' }, ($, e, next) => {
